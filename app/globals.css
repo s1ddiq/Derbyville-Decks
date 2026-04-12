@@ -49,38 +49,52 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* Backgrounds - green as main background */
+  --background: #203823;
+  --foreground: #ffffff;  /* White text on green */
+  
+  /* Cards - gold for card backgrounds */
+  --card: #e2be82;
+  --card-foreground: #203823;  /* Dark green text on gold cards */
+  
+  /* Popover (modals/dropdowns) - match card style */
+  --popover: #e2be82;
+  --popover-foreground: #203823;
+  
+  /* Primary buttons/accents - use gold or a lighter green */
+  --primary: #e2be82;
+  --primary-foreground: #203823;
+  
+  /* Secondary elements - lighter variation of green */
+  --secondary: #2d4f35;
+  --secondary-foreground: #ffffff;
+  
+  /* Muted/subtle elements */
+  --muted: #2a4230;
+  --muted-foreground: #c4a66a;  /* Lighter gold for muted text */
+  
+  /* afaf */
+  /* Accent - use gold */
+  --accent: #e2be82;
+  --accent-foreground: #203823;
+  
+  /* Destructive (errors, delete) - keep as is or adjust */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Borders - use gold or light green */
+  --border: #1c301e;
+  --input: #2d4f35;
+  --ring: #e2be82;  /* Focus rifafang - gold */
+  
+  /* Sidebar - darker green */
+  --sidebar: #1a2e1f;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #e2be82;
+  --sidebar-primary-foreground: #203823;
+  --sidebar-accent: #2d4f35;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e2be82;
+  --sidebar-ring: #e2be82;
 }
 
 .dark {
@@ -128,3 +142,20 @@
     @apply font-sans;
   }
 }
+
+/* CUSTOM CLASSES APPLICATIONS */
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+
+
+/* RESTORATIONS / OVERRITES TO UI LIBRARY */
+@layer base {
+button:not([disabled]),
+[role="button"]:not([disabled]) {
+cursor: pointer;
+}
+}
+
