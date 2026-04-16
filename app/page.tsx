@@ -87,13 +87,13 @@ function Home() {
           </Button>
 
           <div className="absolute left-1/2 -translate-x-1/2">
-            <Image
+            {/* <Image
               src="/313-logo.png"
               alt="Derbyville Decks Logo"
               width={40}
               height={40}
               className="h-10 w-auto"
-            />
+            /> */}
           </div>
 
           <ul className="hidden md:flex gap-6 text-sm">
@@ -128,13 +128,13 @@ function Home() {
         }`}
       >
         <div className="flex justify-between items-center px-4 py-6">
-          <Image
+          {/* <Image
             src="/313-logo.png"
             alt="313 Logo"
             width={40}
             height={40}
             className="h-10 w-auto"
-          />
+          /> */}
           <Button onClick={closeSidebar} variant="ghost" size="icon">
             <X size={24} />
           </Button>
