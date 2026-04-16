@@ -73,7 +73,7 @@ function Home() {
   ];
 
   return (
-    <div className="bg-[url('/background1.png')] bg-cover bg-fixed text-white font-sans scroll-smooth min-h-screen">
+    <div className="bg-[furl('/background1.png')] bg-cover bg-fixed text-white font-sans scroll-smooth min-h-screen">
       {/* Navigation */}
       <header className="fixed top-0 w-full px-6 py-3 z-50 backdrop-blur-md bg-dark/50 border-b border-white/10">
         <nav className="max-w-7xl mx-auto flex justify-between items-center relative">
