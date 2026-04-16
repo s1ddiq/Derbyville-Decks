@@ -1,196 +1,237 @@
+// app/page.tsx
 "use client";
-import HomeNavbar from "@/components/HomeNavbar";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Star } from "lucide-react";
-import { testimonials } from "@/lib/constants";
-import HomeFooter from "@/components/HomeFooter";
+import { Menu, X, ArrowDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+    reveals.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const openSidebar = () => setIsSidebarOpen(true);
+  const closeSidebar = () => setIsSidebarOpen(false);
+
+  const services = [
+    {
+      title: "Wood Decks",
+      description:
+        "Classic cedar, pressure-treated, or exotic hardwoods. Natural beauty that lasts.",
+      badge: "Wood",
+      bgClass: "bg-primary",
+      buttonVariant: "secondary" as const,
+    },
+    {
+      title: "Composite Decks",
+      description:
+        "Low-maintenance, eco-friendly. No staining, no sealing, just beautiful outdoor living.",
+      badge: "Comp",
+      bgClass: "bg-dark text-white border border-gold/30",
+      buttonVariant: "default" as const,
+    },
+    {
+      title: "Deck Repair",
+      description:
+        "Structural repairs, board replacement, and restoration. Bring your old deck back to life.",
+      badge: "Fix",
+      bgClass: "bg-beige",
+      buttonVariant: "secondary" as const,
+    },
+    {
+      title: "Porches",
+      description:
+        "Screened, three-season, or open porches. Extend your living space outdoors.",
+      badge: "Porch",
+      bgClass: "",
+      buttonVariant: "secondary" as const,
+    },
+    {
+      title: "Railings",
+      description:
+        "Custom railings, glass panels, cable rail, and more. Safety meets style.",
+      badge: "Rail",
+      bgClass: "bg-dark text-white border border-gold/30",
+      buttonVariant: "default" as const,
+    },
+  ];
+
   return (
-    <main className="w-full flex flex-1 flex-col">
-      <HomeNavbar />
+    <div className="bg-[url('/background1.png')] bg-cover bg-fixed text-white font-sans scroll-smooth min-h-screen">
+      {/* Navigation */}
+      <header className="fixed top-0 w-full px-6 py-4 z-50 backdrop-blur-md bg-dark/50 border-b border-white/10">
+        <nav className="max-w-7xl mx-auto flex justify-between items-center relative">
+          <Button
+            onClick={openSidebar}
+            variant="ghost"
+            className="flex items-center gap-2 text-white hover:text-white/80"
+          >
+            <Menu size={16} />
+            <span>MENU</span>
+          </Button>
 
-      {/* Hero with diagonal image */}
-      <section className="relative h-[calc(100vh-69px)]">
-        {/* Diagonal cut image background */}
-        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Image
+              src="/313-logo.png"
+              alt="Derbyville Decks Logo"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+            />
+          </div>
+
+          <ul className="hidden md:flex gap-6 text-sm">
+            <li>
+              <a href="#services" className="hover:opacity-80">
+                SERVICES
+              </a>
+            </li>
+            <li>
+              <a href="#about" className="hover:opacity-80">
+                ABOUT US
+              </a>
+            </li>
+            <li>
+              <a href="#projects" className="hover:opacity-80">
+                PROJECTS
+              </a>
+            </li>
+            <li>
+              <a href="#career" className="hover:opacity-80">
+                CAREER
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed left-0 top-0 h-full w-72 bg-primary text-background transform transition-transform duration-300 z-50 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center px-4 py-6">
           <Image
-            src="/hero_image.png"
-            alt="Beautiful custom deck"
-            fill
-            priority
-            className="object-cover"
-            style={{
-              clipPath: "polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%)",
-            }}
+            src="/313-logo.png"
+            alt="313 Logo"
+            width={40}
+            height={40}
+            className="h-10 w-auto"
           />
-          {/* Dark overlay for text readability */}
-          <div
-            className="absolute inset-0 bg-black/40"
-            style={{
-              clipPath: "polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%)",
-            }}
-          />
-        </div>
-
-        {/* Content on top */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4 sm:px-6 md:px-8">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold">
-            BUILT TO LAST
-          </h1>
-          <p className="mt-4 text-base sm:text-lg md:text-xl">
-            Custom decks • Free estimates • Lifetime warranty
-          </p>
-          <Button className="mt-8 text-sm sm:text-base">
-            Get Free Quote →
+          <Button onClick={closeSidebar} variant="ghost" size="icon">
+            <X size={24} />
           </Button>
         </div>
-      </section>
+        <ul className="px-6 space-y-4 text-lg">
+          <li>
+            <a href="#services" onClick={closeSidebar}>
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="#about" onClick={closeSidebar}>
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#projects" onClick={closeSidebar}>
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="#career" onClick={closeSidebar}>
+              Career
+            </a>
+          </li>
+        </ul>
+      </aside>
 
-      <section className="flex-1 my-12 sm:my-16 md:my-24 px-4 sm:px-6 md:px-8">
-        <div className="flex flex-wrap gap-6 justify-center w-full">
-          <Card className="max-w-sm w-full">
-            <CardHeader>
-              <CardTitle className="text-xl sm:text-2xl">
-                Lorem, ipsum dolor.
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="mt-4 space-y-2 text-sm sm:text-base">
-                <li className="text-sm sm:text-base">
-                  ✓ Free design consultation
-                </li>
-                <li className="text-sm sm:text-base">
-                  ✓ Premium materials only
-                </li>
-                <li className="text-sm sm:text-base">
-                  ✓ 10-year craftsmanship warranty
-                </li>
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" className="w-full text-sm sm:text-base">
-                Explore Wood Decks →
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="max-w-sm w-full">
-            <CardHeader>
-              <CardTitle className="text-xl sm:text-2xl">
-                Lorem, ipsum dolor.
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="mt-4 space-y-2 text-sm sm:text-base">
-                <li className="text-sm sm:text-base">
-                  ✓ No staining or sealing
-                </li>
-                <li className="text-sm sm:text-base">
-                  ✓ Fade & stain resistant
-                </li>
-                <li className="text-sm sm:text-base">
-                  ✓ 25-year manufacturer warranty
-                </li>
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" className="w-full text-sm sm:text-base">
-                Explore Composite →
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="max-w-sm w-full">
-            <CardHeader>
-              <CardTitle className="text-xl sm:text-2xl">
-                Lorem, ipsum dolor.
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="mt-4 space-y-2 text-sm sm:text-base">
-                <li className="text-sm sm:text-base">✓ Rot & damage repair</li>
-                <li className="text-sm sm:text-base">✓ Railing replacement</li>
-                <li className="text-sm sm:text-base">
-                  ✓ Power washing & sealing
-                </li>
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" className="w-full text-sm sm:text-base">
-                Get Repair Quote →
-              </Button>
-            </CardFooter>
-          </Card>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center pt-32 text-center">
+        <div className="space-y-16 z-10 relative">
+          <h1 className="font-serif text-5xl md:text-8xl leading-tight">
+            WE BUILD DECKS
+          </h1>
+          <ArrowDown
+            className="arrow-animate mx-auto text-white opacity-70"
+            size={32}
+          />
         </div>
       </section>
 
-      <section className="flex-center flex-1 my-12 sm:my-16 md:my-24 mt-24 sm:mt-32 md:mt-48 flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 md:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
-            Gallery
+      {/* Stats Section */}
+      <section className="max-w-7xl mx-auto px-6 py-20 text-center reveal">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+          <h2 className="font-serif text-4xl">
+            150+ decks built in 12 months.
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
-            Let&apos;s see what you may be missing out on in your backyard
+          <Image
+            src="/line.svg"
+            alt="Divider"
+            width={80}
+            height={24}
+            className="h-6 hidden md:block"
+          />
+          <p className="text-lg opacity-70 max-w-xl">
+            We successfully built 150+ custom decks in 2025, and we&apos;re just
+            getting started.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mx-auto w-full">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="w-full">
-              <Card className="w-full aspect-square bg-card/30 flex-center p-4">
-                <p className="text-xs sm:text-sm text-center">
-                  your Image would be here cuzzy {i + 1}
-                </p>
-              </Card>
-            </div>
-          ))}
-        </div>
       </section>
 
-      <section className="flex-center flex-col gap-8 sm:gap-10 md:gap-12 flex-1 my-12 sm:my-16 md:my-24 mt-24 sm:mt-32 md:mt-48 px-4 sm:px-6 md:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
-            What Our Customers Say
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
-            See why we&apos;re the top-rated deck builder in Connecticut
+      {/* Services - 5 Cards */}
+      <section
+        id="services"
+        className="max-w-7xl mx-auto px-6 py-20 space-y-12"
+      >
+        <div className="text-center mb-8">
+          <h2 className="font-serif text-4xl md:text-5xl">Our Deck Services</h2>
+          <p className="text-lg opacity-70 mt-4">
+            Custom decks, porches, and outdoor living spaces
           </p>
         </div>
-
-        <div className="flex flex-wrap gap-6 justify-center max-w-7xl mx-auto w-full">
-          {testimonials.map((testimonial) => (
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {services.map((service, index) => (
             <Card
-              key={testimonial.id}
-              className="max-w-md w-full hover:shadow-lg transition-shadow py-4 sm:py-6"
+              key={index}
+              className={`relative overflow-hidden transition-all hover:scale-[1.02] flex flex-col h-full`}
             >
-              <CardContent>
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 sm:w-5 sm:h-5 text-background fill-background/50"
-                    />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <p className="mb-6 italic text-sm sm:text-base">
-                  "{testimonial.quote}"
+              <CardHeader>
+                <CardTitle className="font-serif text-2xl">
+                  {service.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 flex flex-col flex-grow relative">
+                <p className="text-sm opacity-90 flex-grow">
+                  {service.description}
                 </p>
-
-                {/* Project type */}
-                <p className="text-xs sm:text-sm text-background font-medium">
-                  Project: {testimonial.project}
+                <Button
+                  variant="secondary"
+                  className="w-full relative z-10 mt-auto"
+                >
+                  {service.title === "Deck Repair"
+                    ? "GET REPAIR"
+                    : "EXPLORE MORE"}{" "}
+                  →
+                </Button>
+                <p className="absolute text-[5rem] font-serif -bottom-12 right-2 opacity-10 select-none pointer-events-none z-0">
+                  {service.badge}
                 </p>
               </CardContent>
             </Card>
@@ -198,177 +239,160 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="flex-center flex-col gap-8 sm:gap-10 md:gap-12 flex-1 my-12 sm:my-16 md:my-24 mt-24 sm:mt-32 md:mt-48 px-4 sm:px-6 md:px-8">
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
-              Let&apos;s Build Something Great
+      {/* About Section */}
+      <section id="about" className="max-w-7xl mx-auto px-6 py-20 reveal">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="font-serif text-4xl md:text-5xl mb-6">
+              About Derbyville Decks Decks
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
-              Fill out the form and we&apos;ll get back to you within 24 hours
+            <p className="text-lg opacity-80 mb-4">
+              We&apos;re a family-owned deck building company based in Detroit,
+              MI. With over a decade of experience, we&apos;ve transformed
+              hundreds of backyards into beautiful outdoor living spaces.
+            </p>
+            <p className="text-lg opacity-80">
+              Our commitment to quality craftsmanship, premium materials, and
+              customer satisfaction sets us apart. Every deck we build comes
+              with a lifetime warranty on workmanship.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-            {/* Left side - Contact info */}
-            <div className="space-y-4 sm:space-y-6">
-              <Card className="bg-primary/10 border-primary text-primary">
-                <CardContent className="p-4 sm:p-6">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-                    Why Choose Us?
-                  </h3>
-                  <ul className="space-y-2 sm:space-y-3">
-                    <li className="flex items-center gap-2 text-sm sm:text-base">
-                      ✓ 500+ decks built
-                    </li>
-                    <li className="flex items-center gap-2 text-sm sm:text-base">
-                      ✓ Fully licensed & insured
-                    </li>
-                    <li className="flex items-center gap-2 text-sm sm:text-base">
-                      ✓ Free lifetime warranty
-                    </li>
-                    <li className="flex items-center gap-2 text-sm sm:text-base">
-                      ✓ 0% financing available
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <p className="font-semibold text-sm sm:text-base">
-                        Call Us
-                      </p>
-                      <p className="text-muted text-xs sm:text-sm">
-                        (555) 123-4567
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <p className="font-semibold text-sm sm:text-base">
-                        Email
-                      </p>
-                      <p className="text-muted text-xs sm:text-sm">
-                        hello@derbyvilledecks.com
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <p className="font-semibold text-sm sm:text-base">
-                        Visit Us
-                      </p>
-                      <p className="text-muted text-xs sm:text-sm">
-                        123 Main St, Derby, CT
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Right side - Form */}
-            <Card className="shadow-xl">
-              <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="text-xl sm:text-2xl">
-                  Request Your Free Quote
-                </CardTitle>
-                <p className="text-muted text-sm sm:text-base">
-                  Fill out the form and we&apos;ll contact you shortly
-                </p>
-              </CardHeader>
-              <CardContent className="p-4 sm:p-6">
-                <form className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-xs sm:text-sm font-medium mb-1 block">
-                        First name *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="John"
-                        className="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs sm:text-sm font-medium mb-1 block">
-                        Last name *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Doe"
-                        className="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-xs sm:text-sm font-medium mb-1 block">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="john@example.com"
-                      className="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs sm:text-sm font-medium mb-1 block">
-                      Phone *
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder="(555) 123-4567"
-                      className="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs sm:text-sm font-medium mb-1 block">
-                      Project type
-                    </label>
-                    <select className="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                      <option>New deck construction</option>
-                      <option>Deck repair / restoration</option>
-                      <option>Deck replacement</option>
-                      <option>Just getting ideas</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-xs sm:text-sm font-medium mb-1 block">
-                      Message / Questions
-                    </label>
-                    <textarea
-                      rows={4}
-                      placeholder="Tell us about your dream deck..."
-                      className="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-background text-primary hover:bg-background/90 text-sm sm:text-base"
-                  >
-                    Send Request →
-                  </Button>
-
-                  <p className="text-xs text-muted text-center">
-                    By submitting, you agree to our privacy policy. We&apos;ll
-                    never share your info.
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="bg-primary">
+            <CardHeader>
+              <CardTitle className="font-serif text-2xl text-gold">
+                Our Promise
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2">
+                  ✓ Free detailed estimates
+                </li>
+                <li className="flex items-center gap-2">
+                  ✓ Fully licensed & insured
+                </li>
+                <li className="flex items-center gap-2">
+                  ✓ Lifetime workmanship warranty
+                </li>
+                <li className="flex items-center gap-2">
+                  ✓ 0% financing available
+                </li>
+                <li className="flex items-center gap-2">
+                  ✓ Premium materials only
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
         </div>
       </section>
-      <HomeFooter />
-    </main>
+
+      {/* Projects Gallery Section */}
+      <section id="projects" className="max-w-7xl mx-auto px-6 py-20 reveal">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-4xl md:text-5xl mb-4">
+            Our Recent Projects
+          </h2>
+          <p className="text-lg opacity-70">
+            Take a look at some of our favorite builds
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            <Card
+              key={i}
+              className="aspect-square bg-primary flex items-center justify-center hover:border-gold transition-colors hover:bg-dark/60"
+            >
+              <p className="text-sm opacity-60">Deck Project {i}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Career Section */}
+      <section id="career" className="max-w-7xl mx-auto px-6 py-20">
+        <Card className="text-center p-8 md:p-12  text-background">
+          <CardHeader>
+            <CardTitle className="font-serif text-4xl md:text-5xl">
+              Get a Quote
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <p className="text-lg opacity-80 max-w-2xl mx-auto ">
+              Ready to transform your backyard? Get a free quote today and
+              discover why homeowners trust Derbyville Decks for quality,
+              craftsmanship, and exceptional service.
+            </p>
+            <Button className=" hover:/90 font-semibold bg-background text-foreground">
+              Get Quote
+            </Button>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-10 border-t border-white/20">
+        <p className="mb-4 text-sm">
+          &copy; 2025 - Derbyville Decks Decks. All rights reserved.
+          <a
+            href="/privacy-policy"
+            className="underline underline-offset-2 ml-2"
+          >
+            Privacy Policy
+          </a>
+          and
+          <a
+            href="/terms-of-service"
+            className="underline underline-offset-2 ml-2"
+          >
+            Terms of Service
+          </a>
+        </p>
+        <Image
+          src="/313-logo.png"
+          alt="313 Logo"
+          width={48}
+          height={48}
+          className="h-12 w-auto mx-auto"
+        />
+      </footer>
+
+      <style jsx global>{`
+        @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Instrument+Serif:ital@0;1&display=swap");
+
+        * {
+          font-family: "Instrument Sans", sans-serif;
+        }
+
+        .font-serif {
+          font-family: "Instrument Serif", serif;
+        }
+
+        .reveal {
+          opacity: 0;
+          transform: translateY(30px);
+          transition:
+            opacity 0.8s ease-out,
+            transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .arrow-animate {
+          animation: upAndDown 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes upAndDown {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(-15px);
+          }
+        }
+      `}</style>
+    </div>
   );
 }
