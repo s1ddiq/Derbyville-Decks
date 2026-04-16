@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-export default function Home() {
+function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -218,10 +218,8 @@ export default function Home() {
                   {service.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 flex flex-col flex-grow relative">
-                <p className="text-sm opacity-90 flex-grow">
-                  {service.description}
-                </p>
+              <CardContent className="space-y-4 flex flex-col grow relative">
+                <p className="text-sm opacity-90 grow">{service.description}</p>
                 <Button
                   variant="secondary"
                   className="w-full relative z-10 mt-auto"
@@ -397,3 +395,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
