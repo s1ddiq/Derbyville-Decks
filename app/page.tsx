@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Menu, X, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -74,7 +75,7 @@ export default function Home() {
   return (
     <div className="bg-[url('/background1.png')] bg-cover bg-fixed text-white font-sans scroll-smooth min-h-screen">
       {/* Navigation */}
-      <header className="fixed top-0 w-full px-6 py-4 z-50 backdrop-blur-md bg-dark/50 border-b border-white/10">
+      <header className="fixed top-0 w-full px-6 py-3 z-50 backdrop-blur-md bg-dark/50 border-b border-white/10">
         <nav className="max-w-7xl mx-auto flex justify-between items-center relative">
           <Button
             onClick={openSidebar}
@@ -330,30 +331,30 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="text-center py-10 border-t border-white/20">
-        <p className="mb-4 text-sm">
+      <footer className="text-center pt-6 flex-center border-t border-white/20">
+        <p className="mb-4 text-sm flex-center">
           &copy; 2025 - Derbyville Decks Decks. All rights reserved.
-          <a
+          <Link
             href="/privacy-policy"
-            className="underline underline-offset-2 ml-2"
+            className="underline underline-offset-2 mx-2"
           >
-            Privacy Policy
-          </a>
+            Privacy Policy{" "}
+          </Link>
           and
-          <a
+          <Link
             href="/terms-of-service"
-            className="underline underline-offset-2 ml-2"
+            className="underline underline-offset-2 mx-2"
           >
             Terms of Service
-          </a>
+          </Link>
         </p>
-        <Image
+        {/* <Image
           src="/313-logo.png"
           alt="313 Logo"
           width={48}
           height={48}
           className="h-12 w-auto mx-auto"
-        />
+        /> */}
       </footer>
 
       <style jsx global>{`
