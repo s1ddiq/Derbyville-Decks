@@ -1,40 +1,44 @@
+// app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-instrument-sans",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
 });
 
 export const metadata: Metadata = {
-  title: "Derbyville Decks",
+  title: "Derbyville Decks - Professional Deck Building",
   description:
-    "Where the track meets your backyard. Premium pressure-treated decks built for Connecticuts's wildest parties and toughest weather.",
+    "We build, restore, and design strong and practical decks that make sense for your home and your budget.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", inter.variable, "font-sans")}
+      className={`${instrumentSans.className} ${instrumentSerif.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="bg-[url('/background1.png')] bg-cover bg-fixed text-white font-sans min-h-screen">
+        <SiteHeader showPrivacyLink={false} showTermsLink={false} />
+        <main>{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

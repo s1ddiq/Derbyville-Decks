@@ -141,6 +141,10 @@
   html {
     @apply font-sans;
   }
+
+  .font-serif {
+    font-family: var(--font-instrument-serif);
+  }
 }
 
 /* CUSTOM CLASSES APPLICATIONS */
