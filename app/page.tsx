@@ -158,12 +158,14 @@ function Home() {
           ))}
         </div>
 
-        <Button
-          variant="default"
-          className="w-full relative z-10 mt-auto border-black border-2"
-        >
-          TALK TO US TODAY →
-        </Button>
+        <div className="w-full flex justify-end">
+          <Button
+            variant="default"
+            className=" relative z-10 mt-auto bg-white/5 backdrop-blur-sm text-white border-black border-2 "
+          >
+            TALK TO US TODAY →
+          </Button>
+        </div>
       </section>
 
       {/* About Section */}
