@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 // Reusable reveal component
 function RevealOnScroll({ children, delay = 0, direction = "up" }: any) {
@@ -21,7 +22,8 @@ function RevealOnScroll({ children, delay = 0, direction = "up" }: any) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, ...directions[direction] }}
+      // @ts-ignore faf
+      initial={{ opacity: 0, ...(directions[direction] as any) }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
@@ -156,14 +158,12 @@ function Home() {
           ))}
         </div>
 
-        <RevealOnScroll direction="up" delay={0.3}>
-          <Button
-            variant="default"
-            className="w-full relative z-10 mt-auto border-black border-2"
-          >
-            TALK TO US TODAY →
-          </Button>
-        </RevealOnScroll>
+        <Button
+          variant="default"
+          className="w-full relative z-10 mt-auto border-black border-2"
+        >
+          TALK TO US TODAY →
+        </Button>
       </section>
 
       {/* About Section */}
@@ -192,25 +192,55 @@ function Home() {
             <Card className="bg-primary">
               <CardHeader>
                 <CardTitle className="font-serif text-2xl text-gold">
-                  Our Promise
+                  Our Principles
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-2">
-                    ✓ Free detailed estimates
+                  <li className="flex flex-col justify-center gap-2">
+                    <span className="text-lg">
+                      ✓ Clear, Detailed Estimates.
+                    </span>
+                    <span className="opacity-80">
+                      Every project is clearly scoped so you know exactly what
+                      is being done and why. No vague pricing or suprises.
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    ✓ Fully licensed & insured
+                  <li className="flex flex-col justify-center gap-2">
+                    <span className="text-lg">✓ Licensed & insured</span>
+                    <span className="opacity-80">
+                      Fully licensed and insured for your protection and peace
+                      of mind.
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    ✓ Lifetime workmanship warranty
+                  <li className="flex flex-col justify-center gap-2">
+                    <span className="text-lg">
+                      ✓ Workmanship You Can Rely On
+                    </span>
+                    <span className="opacity-80">
+                      We stand behind our work forever.{" "}
+                      <Link
+                        href="/workmanship-warranty"
+                        className="border-b-2 border-dotted"
+                        title="Our Workmanship Warranty"
+                      >
+                        (What does this mean?)
+                      </Link>
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    ✓ 0% financing available
+                  <li className="flex flex-col justify-center gap-2">
+                    <span className="text-lg">✓ Flexible Payment Options</span>
+                    <span className="opacity-80">
+                      0% financing available, pay-in-4 options, and all standard
+                      payment methods accepted.
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    ✓ Premium materials only
+                  <li className="flex flex-col justify-center gap-2">
+                    <span className="text-lg">✓ Quality Where It Matters</span>
+                    <span className="opacity-80">
+                      We use durable materials and skilled labor where it
+                      counts, without pushing unecessary upgrades.
+                    </span>
                   </li>
                 </ul>
               </CardContent>
