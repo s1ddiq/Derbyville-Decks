@@ -147,12 +147,20 @@
   }
 }
 
-/* CUSTOM CLASSES APPLICATIONS */
+/* CUSTOM CLASSES APPLICATIONS ! */
 
 .flex-center {
   @apply flex items-center justify-center;
 }
 
+.card-shadow {
+  box-shadow: 4px 4px 0px black;
+}
+
+.card-shadow:hover {
+  transition: box-shadow 0.3s;
+  box-shadow: 2px 2px 0px black; 
+}
 
 
 /* RESTORATIONS / OVERRITES TO UI LIBRARY */
