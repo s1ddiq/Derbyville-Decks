@@ -57,13 +57,13 @@ function SiteHeader({
             />
           </Link>
 
-          <ul className="hidden md:flex gap-6 text-xl flex-center">
+          <ul className="hidden md:flex gap-6 text-xl flex-center font-serif">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   title={link.label}
-                  className={`hover:text-primary tracking-tight ${
+                  className={`hover:text-primary tracking-wider ${
                     link.href === "/privacy-policy" ||
                     link.href === "/terms-of-service"
                       ? "text-white/70"
@@ -77,7 +77,7 @@ function SiteHeader({
             <Button
               onClick={openSidebar}
               variant="ghost"
-              className="flex items-center gap-2 text-xl text-white hover:text-white/80"
+              className="flex items-center gap-2 text-xl text-white hover:text-white/80 tracking-wider"
             >
               <Menu size={24} />
               <span>MENU</span>

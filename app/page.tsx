@@ -76,12 +76,14 @@ function Home() {
           className="space-y-6 z-10 relative flex flex-col items-center"
         >
           <Image
-            src="/EMBLEM003.svg"
-            width={156}
-            height={156}
+            src="/EMBLEM002.svg"
+            width={210}
+            height={210}
             alt="Derbyville Decks Emblem"
           />
-          <h1 className="text-5xl md:text-8xl leading-tight">WE BUILD DECKS</h1>
+          <h1 className="text-5xl md:text-8xl leading-tight font-serif">
+            WE BUILD DECKS
+          </h1>
 
           <motion.p
             initial={{ opacity: 0 }}
@@ -102,7 +104,7 @@ function Home() {
       <RevealOnScroll direction="up">
         <section className="max-w-7xl mx-auto px-6 py-20 text-center">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <h2 className="text-4xl">90+ projects in 2025</h2>
+            <h2 className="text-4xl font-serif">90+ projects in 2025</h2>
             <Image
               src="/line.svg"
               alt="Divider"
@@ -125,7 +127,9 @@ function Home() {
       >
         <RevealOnScroll direction="up">
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl">Our Deck Services</h2>
+            <h2 className="text-4xl md:text-5xl font-serif">
+              Our Deck Services
+            </h2>
             <p className="text-xl text-white/90 mt-4">
               Custom decks, porches, and outdoor living spaces
             </p>
@@ -137,13 +141,15 @@ function Home() {
             <RevealOnScroll key={index} direction="up" delay={index * 0.1}>
               <Card className="relative overflow-hidden transition-all hover:scale-[1.02] flex flex-col h-full  backdrop-blur-sm ">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{service.title}</CardTitle>
+                  <CardTitle className="text-2xl font-serif">
+                    {service.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 flex flex-col grow relative">
                   <p className="text-base opacity-90 grow">
                     {service.description}
                   </p>
-                  <p className="absolute text-[4rem] -bottom-12 right-2 opacity-10 select-none pointer-events-none z-0">
+                  <p className="absolute text-[3rem] -bottom-12 right-2 opacity-10 select-none pointer-events-none z-0">
                     {service.badge}
                   </p>
                 </CardContent>
@@ -155,7 +161,7 @@ function Home() {
         <div className="w-full flex justify-center">
           <Button
             variant="outline"
-            className="relative z-10 mt-auto backdrop-blur-sm w-full md:w-4/8 card-shadow text-primary hover:text-primary/90 border-primary"
+            className="relative border-2 text-3xl bg-white/5 hover:bg-primary  font-bold tracking-widr z-10 mt-auto backdrop-blur-sm w-full md:w-4/8 card-shadow text-primary hover:text-background border-primary py-8 font-serif"
           >
             TALK TO US TODAY →
           </Button>
@@ -167,7 +173,9 @@ function Home() {
         <section id="about" className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl mb-6">About the Company</h2>
+              <h2 className="text-4xl md:text-5xl mb-6 font-serif">
+                About the Company
+              </h2>
               <p className="text-xl text-white/90 mb-4">
                 Too often, some of our friends in the industry push upgrades and
                 inflate costs by overcomplicating straightforward jobs. We focus
@@ -182,12 +190,14 @@ function Home() {
             </div>
             <Card className=" backdrop-blur-sm ">
               <CardHeader>
-                <CardTitle className="text-2xl">Our Principles</CardTitle>
+                <CardTitle className="text-2xl font-serif">
+                  Our Principles
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-lg">
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-xl">
+                    <span className="text-xl font-serif">
                       ✓ Clear, Detailed Estimates.
                     </span>
                     <span className="opacity-80">
@@ -196,14 +206,16 @@ function Home() {
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-xl">✓ Licensed & insured</span>
+                    <span className="text-xl font-serif">
+                      ✓ Licensed & insured
+                    </span>
                     <span className="opacity-80">
                       Fully licensed and insured for your protection and peace
                       of mind.
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-xl">
+                    <span className="text-xl font-serif">
                       ✓ Workmanship You Can Rely On
                     </span>
                     <span className="opacity-80">
@@ -217,14 +229,18 @@ function Home() {
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-xl">✓ Flexible Payment Options</span>
+                    <span className="text-xl font-serif">
+                      ✓ Flexible Payment Options
+                    </span>
                     <span className="opacity-80">
                       0% financing available, pay-in-4 options, and all standard
                       payment methods accepted.
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-xl">✓ Quality Where It Matters</span>
+                    <span className="text-xl font-serif">
+                      ✓ Quality Where It Matters
+                    </span>
                     <span className="opacity-80">
                       We use durable materials and skilled labor where it
                       counts, without pushing unnecessary upgrades.
@@ -241,7 +257,9 @@ function Home() {
       <RevealOnScroll direction="up">
         <section id="projects" className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl mb-4">Our Recent Projects</h2>
+            <h2 className="text-4xl md:text-5xl mb-4 font-serif">
+              Our Recent Projects
+            </h2>
             <p className="text-xl text-white/90">
               Take a look at some of our favorite builds
             </p>
@@ -263,7 +281,7 @@ function Home() {
         <section id="get-a-quote" className="max-w-7xl mx-auto px-6 py-20">
           <Card className="text-center p-8 md:p-12 ">
             <CardHeader>
-              <CardTitle className="text-4xl md:text-5xl">
+              <CardTitle className="text-4xl md:text-5xl font-serif">
                 Get a Quote
               </CardTitle>
             </CardHeader>

@@ -37,7 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${mainFont.className}`}>
+    <html
+      lang="en"
+      className={`${secondaryFont.variable} ${mainFont.variable} ${secondaryFontItalic.variable} ${mainFontItalic.variable}`}
+    >
       <body className="bg-[url('/background1.png')] bg-cover bg-fixed text-white font-sans min-h-screen">
         <SiteHeader showPrivacyLink={false} showTermsLink={false} />
         <main>{children}</main>

@@ -225,7 +225,9 @@ function PrivacyPolicyView() {
 
         <RevealOnScroll delay={0.1}>
           <div className="text-center mb-12">
-            <h1 className=" text-5xl md:text-6xl mb-4">Privacy Policy</h1>
+            <h1 className=" text-5xl md:text-6xl mb-4 font-serif">
+              Privacy Policy
+            </h1>
             <p className="text-white/70 text-lg">
               Last Updated: April 17th, 2026
             </p>
@@ -238,7 +240,7 @@ function PrivacyPolicyView() {
               <div
                 className={`bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 ${section.title === "Contact Us" ? "bg-primary/30 border-white/20" : ""}`}
               >
-                <h2 className=" text-2xl mb-3">{section.title}</h2>
+                <h2 className=" text-2xl mb-3 font-serif">{section.title}</h2>
                 {section.content}
               </div>
             </RevealOnScroll>
