@@ -210,7 +210,7 @@ function Home() {
                       We stand behind our work forever.{" "}
                       <Link
                         href="/workmanship-warranty"
-                        className="border-b border-dotted border-white/50 hover:border-white"
+                        className="border-b-2 border-dotted border-background hover:border-white/90"
                       >
                         (What does this mean?)
                       </Link>
