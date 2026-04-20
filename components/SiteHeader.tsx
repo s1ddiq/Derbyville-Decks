@@ -63,7 +63,7 @@ function SiteHeader({
                 <Link
                   href={link.href}
                   title={link.label}
-                  className={`hover:text-primary tracking-wider ${
+                  className={`hover:text-white/90 tracking-wider ${
                     link.href === "/privacy-policy" ||
                     link.href === "/terms-of-service"
                       ? "text-white/70"
