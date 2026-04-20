@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
@@ -69,31 +68,32 @@ function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-32 text-center scroll-smooth">
+      <section className="relative min-h-screen flex items-center justify-center pt-32 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-6 z-10 relative flex-center flex-col"
+          className="space-y-6 z-10 relative flex flex-col items-center"
         >
-          <h1 className="font-serif text-5xl md:text-8xl leading-tight">
-            WE BUILD DECKS
-          </h1>
+          <Image
+            src="/EMBLEM003.svg"
+            width={156}
+            height={156}
+            alt="Derbyville Decks Emblem"
+          />
+          <h1 className="text-5xl md:text-8xl leading-tight">WE BUILD DECKS</h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-white/90 text-center text-xl max-w-3xl"
+            className="text-white/90 text-center text-xl md:text-2xl max-w-3xl"
           >
             We build, restore, and design strong and practical decks that make
             sense for your home and your budget. No over designed luxury
-            projects and no unncessary upgrades. Just solid construction, clean
+            projects and no unnecessary upgrades. Just solid construction, clean
             finishes, and layouts that actually improve how you use this area of
-            your home functionally. Whether it is a full rebuild or a targeted
-            restoration, every project is approached with durability,
-            efficiency, and long-term stable performance in mind. I like to
-            think of us being the American Bison!
+            your home functionally.
           </motion.p>
         </motion.div>
       </section>
@@ -102,9 +102,7 @@ function Home() {
       <RevealOnScroll direction="up">
         <section className="max-w-7xl mx-auto px-6 py-20 text-center">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <h2 className="font-serif text-4xl">
-              150+ decks built in 12 months.
-            </h2>
+            <h2 className="text-4xl">90+ projects in 2025</h2>
             <Image
               src="/line.svg"
               alt="Divider"
@@ -112,9 +110,9 @@ function Home() {
               height={24}
               className="h-6 hidden md:block"
             />
-            <p className="text-lg text-white/90 max-w-xl">
-              We successfully built 150+ custom decks in 2025, and we&apos;re
-              just getting started.
+            <p className="text-xl text-white/90 max-w-xl">
+              We successfully done 90+ projects in 2026, and we&apos;re just
+              getting started.
             </p>
           </div>
         </section>
@@ -127,10 +125,8 @@ function Home() {
       >
         <RevealOnScroll direction="up">
           <div className="text-center mb-8">
-            <h2 className="font-serif text-4xl md:text-5xl">
-              Our Deck Services
-            </h2>
-            <p className="text-lg text-white/90 mt-4">
+            <h2 className="text-4xl md:text-5xl">Our Deck Services</h2>
+            <p className="text-xl text-white/90 mt-4">
               Custom decks, porches, and outdoor living spaces
             </p>
           </div>
@@ -139,17 +135,15 @@ function Home() {
         <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
           {services.map((service, index) => (
             <RevealOnScroll key={index} direction="up" delay={index * 0.1}>
-              <Card className="relative overflow-hidden transition-all hover:scale-[1.02] flex flex-col h-full">
+              <Card className="relative overflow-hidden transition-all hover:scale-[1.02] flex flex-col h-full  backdrop-blur-sm ">
                 <CardHeader>
-                  <CardTitle className="font-serif text-2xl">
-                    {service.title}
-                  </CardTitle>
+                  <CardTitle className="text-2xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 flex flex-col grow relative">
-                  <p className="text-sm opacity-90 grow">
+                  <p className="text-base opacity-90 grow">
                     {service.description}
                   </p>
-                  <p className="absolute text-[4rem] font-serif -bottom-12 right-2 opacity-10 select-none pointer-events-none z-0">
+                  <p className="absolute text-[4rem] -bottom-12 right-2 opacity-10 select-none pointer-events-none z-0">
                     {service.badge}
                   </p>
                 </CardContent>
@@ -158,10 +152,10 @@ function Home() {
           ))}
         </div>
 
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-center">
           <Button
-            variant="default"
-            className=" relative z-10 mt-auto bg-white/5 backdrop-blur-sm text-white border-black border-2 "
+            variant="outline"
+            className="relative z-10 mt-auto backdrop-blur-sm w-full md:w-4/8 card-shadow text-primary hover:text-primary/90 border-primary"
           >
             TALK TO US TODAY →
           </Button>
@@ -173,75 +167,67 @@ function Home() {
         <section id="about" className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="font-serif text-4xl md:text-5xl mb-6">
-                About the Company
-              </h2>
-              <p className="text-lg text-white/90 mb-4">
+              <h2 className="text-4xl md:text-5xl mb-6">About the Company</h2>
+              <p className="text-xl text-white/90 mb-4">
                 Too often, some of our friends in the industry push upgrades and
                 inflate costs by overcomplicating straightforward jobs. We focus
                 on what actually makes a deck good: solid framing, smart layout,
                 and durable materials that look beautiful forever.
               </p>
-              <p className="text-lg text-white/90">
+              <p className="text-xl text-white/90">
                 We specialize in practical builds that repair what can be saved,
                 replace what needs to go, and build new decks that are clean and
-                professionally done to stand the test of time. Every job is
-                approached the same way: what needs to be done, what does not,
-                and how to get the best result. Let us know how we can change
-                your deck for the better today by dropping us a ring!
+                professionally done to stand the test of time.
               </p>
             </div>
-            <Card className="bg-primary">
+            <Card className=" backdrop-blur-sm ">
               <CardHeader>
-                <CardTitle className="font-serif text-2xl text-gold">
-                  Our Principles
-                </CardTitle>
+                <CardTitle className="text-2xl">Our Principles</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3">
+                <ul className="space-y-3 text-lg">
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-lg">
+                    <span className="text-xl">
                       ✓ Clear, Detailed Estimates.
                     </span>
                     <span className="opacity-80">
                       Every project is clearly scoped so you know exactly what
-                      is being done and why. No vague pricing or suprises.
+                      is being done and why. No vague pricing or surprises.
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-lg">✓ Licensed & insured</span>
+                    <span className="text-xl">✓ Licensed & insured</span>
                     <span className="opacity-80">
                       Fully licensed and insured for your protection and peace
                       of mind.
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-lg">
+                    <span className="text-xl">
                       ✓ Workmanship You Can Rely On
                     </span>
                     <span className="opacity-80">
                       We stand behind our work forever.{" "}
                       <Link
                         href="/workmanship-warranty"
-                        className="border-b-2 border-dotted"
-                        title="Our Workmanship Warranty"
+                        className="border-b border-dotted border-white/50 hover:border-white"
                       >
                         (What does this mean?)
                       </Link>
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-lg">✓ Flexible Payment Options</span>
+                    <span className="text-xl">✓ Flexible Payment Options</span>
                     <span className="opacity-80">
                       0% financing available, pay-in-4 options, and all standard
                       payment methods accepted.
                     </span>
                   </li>
                   <li className="flex flex-col justify-center gap-2">
-                    <span className="text-lg">✓ Quality Where It Matters</span>
+                    <span className="text-xl">✓ Quality Where It Matters</span>
                     <span className="opacity-80">
                       We use durable materials and skilled labor where it
-                      counts, without pushing unecessary upgrades.
+                      counts, without pushing unnecessary upgrades.
                     </span>
                   </li>
                 </ul>
@@ -255,18 +241,16 @@ function Home() {
       <RevealOnScroll direction="up">
         <section id="projects" className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl md:text-5xl mb-4">
-              Our Recent Projects
-            </h2>
-            <p className="text-lg text-white/90">
+            <h2 className="text-4xl md:text-5xl mb-4">Our Recent Projects</h2>
+            <p className="text-xl text-white/90">
               Take a look at some of our favorite builds
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
+            {[1, 2, 3, 4].map((i, index) => (
               <RevealOnScroll key={i} direction="up" delay={index * 0.05}>
-                <Card className="aspect-square bg-primary flex items-center justify-center hover:border-gold transition-colors hover:bg-dark/60">
-                  <p className="text-sm opacity-60">Deck Project {i}</p>
+                <Card className="aspect-square  backdrop-blur-sm  flex items-center justify-center 0 transition-colors">
+                  <p className="text-base opacity-60">Deck Project {i}</p>
                 </Card>
               </RevealOnScroll>
             ))}
@@ -274,22 +258,22 @@ function Home() {
         </section>
       </RevealOnScroll>
 
-      {/* Career Section */}
+      {/* Quote Section */}
       <RevealOnScroll direction="up">
         <section id="get-a-quote" className="max-w-7xl mx-auto px-6 py-20">
-          <Card className="text-center p-8 md:p-12 text-background">
+          <Card className="text-center p-8 md:p-12 ">
             <CardHeader>
-              <CardTitle className="font-serif text-4xl md:text-5xl">
+              <CardTitle className="text-4xl md:text-5xl">
                 Get a Quote
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <p className="text-lg opacity-90 max-w-2xl mx-auto">
+              <p className="text-xl opacity-80 max-w-2xl mx-auto">
                 Ready to transform your backyard? Get a free quote today and
                 discover why homeowners trust Derbyville Decks for quality,
                 craftsmanship, and exceptional service.
               </p>
-              <Button className="hover:/90 font-semibold bg-background text-foreground">
+              <Button className="bg-background text-primary hover:bg-background/90 text-xl">
                 Get Quote
               </Button>
             </CardContent>

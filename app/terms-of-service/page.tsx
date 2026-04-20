@@ -156,9 +156,7 @@ function TermsOfService() {
 
         <RevealOnScroll delay={0.1}>
           <div className="text-center mb-12">
-            <h1 className="font-serif text-5xl md:text-6xl mb-4">
-              Terms of Service
-            </h1>
+            <h1 className=" text-5xl md:text-6xl mb-4">Terms of Service</h1>
             <p className="text-white/70 text-lg">
               Last Updated: April 17th, 2026
             </p>
@@ -169,7 +167,7 @@ function TermsOfService() {
           {sections.map((section, index) => (
             <RevealOnScroll key={section.number} delay={0.02 * index}>
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
-                <h2 className="font-serif text-2xl mb-3">
+                <h2 className=" text-2xl mb-3">
                   {section.number}. {section.title}
                 </h2>
                 <p className="text-white/80 leading-relaxed">
@@ -182,7 +180,7 @@ function TermsOfService() {
 
         <RevealOnScroll delay={0.2}>
           <div className="bg-primary/30 backdrop-blur-sm rounded-lg p-6 border border-white/20 mt-8">
-            <h2 className="font-serif text-2xl mb-3">20. Contact Us</h2>
+            <h2 className=" text-2xl mb-3">20. Contact Us</h2>
             <p className="text-white/80 leading-relaxed mb-4">
               If you have any questions about these Terms of Service, please
               contact us:

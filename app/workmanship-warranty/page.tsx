@@ -68,7 +68,7 @@ export default function WorkmanshipWarrantyPage() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="space-y-6 z-10 relative"
         >
-          <h1 className="font-serif text-5xl md:text-7xl leading-tight">
+          <h1 className=" text-5xl md:text-7xl leading-tight">
             Our Workmanship Warranty
           </h1>
           <p className="text-white/90 text-center text-xl max-w-3xl mx-auto">
@@ -82,7 +82,7 @@ export default function WorkmanshipWarrantyPage() {
       {/* What's Covered */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl md:text-5xl">What's Covered</h2>
+          <h2 className=" text-4xl md:text-5xl">What's Covered</h2>
           <p className="text-lg text-white/90 mt-4 max-w-2xl mx-auto">
             To be filled
           </p>
@@ -92,9 +92,7 @@ export default function WorkmanshipWarrantyPage() {
           {coverageItems.map((item, index) => (
             <Card key={index} className="h-full">
               <CardHeader>
-                <CardTitle className="font-serif text-xl">
-                  To be filled
-                </CardTitle>
+                <CardTitle className=" text-xl">To be filled</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-white/80">To be filled</p>

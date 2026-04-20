@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface SiteHeaderProps {
   showPrivacyLink?: boolean;
@@ -46,25 +47,23 @@ function SiteHeader({
       {/* Navigation */}
       <header className="fixed top-0 w-full px-6 py-3 z-50 bg-white/5 backdrop-blur-sm rounded-lg p-6 border-b border-white/10">
         <nav className="max-w-7xl mx-auto flex justify-between items-center relative">
-          <Button
-            onClick={openSidebar}
-            variant="ghost"
-            className="flex items-center gap-2 text-white hover:text-white/80"
-          >
-            <Menu size={16} />
-            <span>MENU</span>
-          </Button>
-
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <Link href="/">
             {/* Optional logo placeholder */}
-          </div>
+            <Image
+              src="/gold-rec.svg"
+              width={180}
+              height={128}
+              alt="Derbyville Decks Logo"
+            />
+          </Link>
 
-          <ul className="hidden md:flex gap-6 text-sm">
+          <ul className="hidden md:flex gap-6 text-xl flex-center">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`hover:text-white/90 ${
+                  title={link.label}
+                  className={`hover:text-primary tracking-tight ${
                     link.href === "/privacy-policy" ||
                     link.href === "/terms-of-service"
                       ? "text-white/70"
@@ -75,14 +74,22 @@ function SiteHeader({
                 </Link>
               </li>
             ))}
+            <Button
+              onClick={openSidebar}
+              variant="ghost"
+              className="flex items-center gap-2 text-xl text-white hover:text-white/80"
+            >
+              <Menu size={24} />
+              <span>MENU</span>
+            </Button>
           </ul>
         </nav>
       </header>
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 h-full w-72 bg-white/5 backdrop-blur-sm rounded-lg p-6 border-r border-white/10 transform transition-transform duration-300 z-50 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed right-0 top-0 h-full w-72 bg-white/5 backdrop-blur-sm rounded-lg p-6 border-r border-white/10 transform transition-transform duration-300 z-50 ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-between items-center px-4 py-6">
@@ -92,7 +99,7 @@ function SiteHeader({
         </div>
         <ul className="px-6 space-y-4 text-lg">
           {sidebarLinks.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="hover:text-primary">
               <Link href={link.href} onClick={closeSidebar}>
                 {link.label}
               </Link>
