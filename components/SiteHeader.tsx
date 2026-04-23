@@ -57,7 +57,7 @@ function SiteHeader({
             />
           </Link>
 
-          <ul className="hidden md:flex gap-6 text-xl flex-center font-serif">
+          <ul className="hidden! md:flex gap-6 text-xl flex-center font-serif">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -74,15 +74,15 @@ function SiteHeader({
                 </Link>
               </li>
             ))}
-            <Button
-              onClick={openSidebar}
-              variant="ghost"
-              className="flex items-center gap-2 text-xl text-white hover:text-white/80 tracking-wider"
-            >
-              <Menu size={24} />
-              <span>MENU</span>
-            </Button>
           </ul>
+          <Button
+            onClick={openSidebar}
+            variant="ghost"
+            className="flex items-center gap-2 text-xl text-white hover:text-white/80 tracking-wider"
+          >
+            <Menu size={24} />
+            <span>MENU</span>
+          </Button>
         </nav>
       </header>
 
